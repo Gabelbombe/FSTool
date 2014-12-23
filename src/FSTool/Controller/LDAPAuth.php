@@ -1,19 +1,16 @@
 <?php
 
+/**
+ * REQ : https://github.com/Alaneor/AD-X
+ */
+
 Namespace FSTool\Controller
 {
-    Class Home extends \SlimController\SlimController
+    Class Authenticate Extends \SlimController\SlimController
     {
-        public function authdAction()
-        {
-            return true;
-        }
-
         public function indexAction()
         {
-            $this->render('home/index', [
-                'someVar' => date('c')
-            ]);
+            $this->render('ldap/index', []);
         }
 
         public function helloAction($name)
