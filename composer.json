@@ -1,7 +1,9 @@
 {
   "require": {
+    "php": ">=5.6",
     "slim/slim": "2.*",
-    "slimcontroller/slimcontroller": "dev-master"
+    "slimcontroller/slimcontroller": "dev-master",
+    "alaneor/ad-x": "dev-master"
   },
   "autoload": {
     "psr-0": {
