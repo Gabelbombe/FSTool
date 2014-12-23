@@ -1,5 +1,11 @@
 {
   "require": {
-    "slim/slim": "2.*"
+    "slim/slim": "2.*",
+    "slimcontroller/slimcontroller": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "FSTool": "src/"
+    }
   }
 }
