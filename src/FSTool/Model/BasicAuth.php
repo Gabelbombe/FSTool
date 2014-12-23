@@ -1,13 +1,17 @@
 <?php
 
-/**
- * REQ : https://github.com/Alaneor/AD-X
- */
-
-Namespace FSTool\Controller
+Namespace FSTool\Model
 {
-    Class LDAPAuth Extends \SlimController\SlimController
+    Class Auth Extends \Slim\Middleware
     {
+        public function call()
+        {
+            die('call');
+
+            //Check URL to see if we need to apply auth
+            //If so use getUserIdFromCredentials() or similar
+        }
+
         public function indexAction()
         {
             $this->render('ldap/index', []);

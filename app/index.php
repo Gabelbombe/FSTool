@@ -14,8 +14,6 @@ $app = New \SlimController\Slim([
     'controller.template_suffix' => 'php',
 ]);
 
-$app->addRoutes([
-    '/'            => 'BasicAuth:index',
-]);
+require APP_PATH . '/src/FSTool/Routes/BasicAuth.php';
 
 $app->run();
