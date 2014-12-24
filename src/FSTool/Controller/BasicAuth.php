@@ -8,13 +8,13 @@ Namespace FSTool\Controller
 {
     Class BasicAuth Extends \SlimController\SlimController
     {
-        public function indexAction()
-        {
-            die('index');
-        }
         public function routerAction()
         {
-            die('router hit');
+            if (isset($_SESSION['urlRedirect']) || empty($_SESSION['urlRedirect']))
+
+                $this->redirect($_SESSION['urlRedirect']);
+
+            $this->redirect('/');
         }
 
         /**
@@ -24,12 +24,11 @@ Namespace FSTool\Controller
          */
         public function delegateAction()
         {
-            if (! $this->app->request()->isPost())
-            {
-                $this->login();     //loginAction()
-            }
+            if ($this->app->request()->isPost())
 
-            $this->authenticate();  //authAction()
+                $this->authenticate();  //authAction()
+
+            $this->login();             //loginAction()
         }
 
         private function login()
@@ -74,19 +73,32 @@ Namespace FSTool\Controller
             $password   = $this->request()->post('password');
             $errors     = [];
 
-            if ($email != "dodomeki@gmail.com")
+            $isValid    = filter_input($email, FILTER_VALIDATE_EMAIL);
+
+            if (empty($isValid))
             {
-                $errors['email'] = "Email is not found.";
+                // if incorrectly formed, do not pass....
+                $errors['email'] = 'This is not a valid email.';
+
+                $this->app->flash('errors', $errors);
+                $this->redirect('/login');
+           }
+
+            $auth = New \FSTool\Model\Auth($email, $password);
+
+            if ($auth->exists())
+            {
+
             }
 
-            else if ($password != "aaaa")
-            {
+            if ($email != "dodomeki@gmail.com") {
+                $errors['email'] = "Email is not found.";
+            } else if ($password != "aaaa") {
                 $this->app->flash('email', $email);
                 $errors['password'] = "Password does not match.";
             }
 
-            if (count($errors) > 0)
-            {
+            if (count($errors) > 0) {
                 $this->app->flash('errors', $errors);
                 $this->redirect('/login');
             }

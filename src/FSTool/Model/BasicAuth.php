@@ -2,26 +2,35 @@
 
 Namespace FSTool\Model
 {
-    Class Auth Extends \Slim\Middleware
+    Class Auth Extends \SlimController\SlimController
     {
-        public function call()
-        {
-            die('call');
+        protected $email    = false,
+                  $pass     = false;
 
-            //Check URL to see if we need to apply auth
-            //If so use getUserIdFromCredentials() or similar
+        private   $errors   = [];
+
+        public function __construct($email, $pass)
+        {
+            $this->email = $email;
+            $this->pass  = $pass;
         }
 
-        public function indexAction()
+        public function exists()
         {
-            $this->render('ldap/index', []);
+            if (empty(trim($this->email)) || empty(trim($this->pass)))
+            {
+                $this->errors[(empty(trim($this->email)) ? 'email' : 'password')] = 'Cannot be empty.';
+
+                    return false;
+            }
+
+            $pdp = New \FSTool\Model\PDP();
+
         }
 
-        public function helloAction($name)
+        public function getErrors()
         {
-            $this->render('home/hello', [
-                'name' => $name
-            ]);
+            return $this->errors;
         }
     }
 }

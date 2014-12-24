@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Closure for generic auth handoff to drop user on route /login
+ *
+ * @param $app
+ * @return callable
+ */
 $authenticate = function ($app)
 {
     if (! isset($_SESSION)) session_start();
@@ -9,13 +14,16 @@ $authenticate = function ($app)
         if (! isset($_SESSION['user']))
         {
             $_SESSION['urlRedirect'] = $app->request()->getPathInfo();
+
             $app->flash('error', 'Login required');
             $app->redirect('/login');
         }
     };
 };
 
-
+/**
+ * Pre-hooking prior to any other route or map takes place...
+ */
 $app->hook('slim.before.dispatch', function() USE ($app)
 {
     $user = null;
@@ -23,7 +31,14 @@ $app->hook('slim.before.dispatch', function() USE ($app)
     $app->view()->setData('user', $user);
 });
 
-
+/**
+ * Generic/Batched routes
+ *
+ * TODO: SlimController does not differentiate between GET/POST on routes if
+ * TODO: the route path is the same, in order to bypass this atm without hacking
+ * TODO: up our controller we will use a generic switch method until this is
+ * TODO: addressed somewhere down the line.... ~jd
+ */
 $app->addRoutes([
 
     '/login'    => 'BasicAuth:delegate',
