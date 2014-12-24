@@ -6,11 +6,13 @@
 
 Namespace FSTool\Controller
 {
+    USE \FSTool\Model\BasicAuth AS Authenticator;
+
     Class BasicAuth Extends \SlimController\SlimController
     {
         public function routerAction()
         {
-            if (isset($_SESSION['urlRedirect']) || empty($_SESSION['urlRedirect']))
+            if (isset($_SESSION['urlRedirect']) && ! empty($_SESSION['urlRedirect']))
 
                 $this->redirect($_SESSION['urlRedirect']);
 
@@ -73,7 +75,7 @@ Namespace FSTool\Controller
             $password   = $this->request()->post('password');
             $errors     = [];
 
-            $isValid    = filter_input($email, FILTER_VALIDATE_EMAIL);
+            $isValid    = filter_var($email, FILTER_VALIDATE_EMAIL);
 
             if (empty($isValid))
             {
@@ -84,7 +86,7 @@ Namespace FSTool\Controller
                 $this->redirect('/login');
            }
 
-            $auth = New \FSTool\Model\Auth($email, $password);
+            $auth = New Authenticator($email, $password);
 
             if ($auth->exists())
             {
