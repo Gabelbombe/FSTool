@@ -120,6 +120,20 @@ Namespace FSTool\Model
             }
         }
 
+        /**
+         * Shortname for execute()
+         */
+        public function exec()
+        {
+            $this->pdp->numExecutes++;
+
+            $args = func_get_args();
+
+            return call_user_func_array([
+                &$this->pds, 'execute'
+            ], $args);
+        }
+
         public function execute()
         {
             $this->pdp->numExecutes++;

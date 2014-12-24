@@ -13,26 +13,25 @@ Namespace FSTool\Model
         const     DEFAULT_ENV = 'development';
 
         protected $email    = false,
-                  $pass     = false;
+                  $pass     = false,
+                  $user     = null;
 
         private   $errors   = [],
-                  $config   = [];
+                  $config   = [],
+                  $hash     = [];
 
         public function __construct($email, $pass)
         {
-            // Set database adapter, or default to DEV
-            $yaml = yaml_parse_file(APP_PATH . '/config/default.yaml');
-            $this->config = (isset($yaml [getenv('APP_ENV')]))
-                ? (object) $yaml [getenv('APP_ENV')]
-                : (object) $yaml [self::DEFAULT_ENV];
-
-            $this->makeConnectionString();
+            $this->getConfig()->makeConnectionString();
 
             $this->email = $email;
             $this->pass  = $pass;
         }
 
         /**
+         * Account exists Y/n]
+         * Sets user object
+         *
          * @return bool
          */
         public function exists()
@@ -44,14 +43,36 @@ Namespace FSTool\Model
                     return false;
             }
 
-            $pdo = New PDO($this->handler, $this->config->username, $this->config->password, []);
+            $sql = "SELECT id, login, hash FROM users WHERE email = :email";
 
-            $stmt = $pdo->prepare("SELECT login FROM users WHERE email = :email AND password = :pass");
+            $dbh = New PDO($this->handler, $this->config->username, $this->config->password, []);
+            $res = $dbh->prepare($sql);
 
-                $stmt->bindParam(':email', $this->email);
-                $stmt->bindParam(':pass',  $this->pass);    //cleartext for now
+                $res->exec([
+                    ':email' => $this->email
+                ]);
 
-            return true;
+            $this->user = $res->fetch(\PDO::FETCH_OBJ);
+
+            if (empty($this->user))
+            {
+                $this->errors['email'] = "Email is not found.";
+
+                    return false;
+            }
+
+            return password_verify($this->pass, $this->user->hash);
+        }
+
+        private function getConfig()
+        {
+            // Set database adapter, or default to DEV
+            $yaml = yaml_parse_file(APP_PATH . '/config/default.yaml');
+            $this->config = (isset($yaml [getenv('APP_ENV')]))
+                ? (object) $yaml [getenv('APP_ENV')]
+                : (object) $yaml [self::DEFAULT_ENV];
+
+                return $this;
         }
 
         /**
@@ -61,7 +82,9 @@ Namespace FSTool\Model
          */
         private function makeConnectionString()
         {
-            return $this->handler = "{$this->config->adapter}:host={$this->config->host};dbname={$this->config->database}";
+            $this->handler = "{$this->config->adapter}:host={$this->config->host};dbname={$this->config->database}";
+
+                return $this;
         }
 
         /**

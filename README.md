@@ -32,7 +32,7 @@ MYSQL:
         id          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
         login       VARCHAR(100) NOT NULL,
         email       VARCHAR(50)  NOT NULL,
-        hash        VARCHAR(128) NOT NULL,                              ## As SHA-512 generates a 512-bit hash value ~jd
+        hash        VARCHAR(255) NOT NULL, ## Switching to BCRYPT
         created     TIMESTAMP    DEFAULT NOW(),
         modified    TIMESTAMP    DEFAULT NOW() ON UPDATE NOW()
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;

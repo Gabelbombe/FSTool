@@ -1,9 +1,10 @@
-<? require 'header.php' ?>
+<?php require 'header.php' ?>
 
 <p>Welcome to my home page for a context sensitive login/logout sample application.</p>
 
-<?if (! empty($user)):?>
-<p>Hi <?=$user?>
-<?endif;?>
+<?php if (! empty($user))
+{
+    echo "<p>Hi $user";
+} ?>
 
-<? require 'footer.php' ?>
+<?php require 'footer.php' ?>

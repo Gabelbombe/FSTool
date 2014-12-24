@@ -13,10 +13,11 @@ Namespace FSTool\Controller
         public function routerAction()
         {
             if (isset($_SESSION['urlRedirect']) && ! empty($_SESSION['urlRedirect']))
-
+            {
                 $this->redirect($_SESSION['urlRedirect']);
 
-            $this->redirect('/');
+            }
+            $this->render('basicauth/index');
         }
 
         /**
@@ -86,21 +87,19 @@ Namespace FSTool\Controller
                 $this->redirect('/login');
            }
 
-            $auth = New Authenticator($email, $password);
+            // Authenticate user and gather error logging
+            $auth   = New Authenticator($email, $password);
+            $exists = $auth->exists();
+            $errors = $auth->getErrors();
 
-            if ($auth->exists())
+            if (true !== $exists)
             {
-
-            }
-
-            if ($email != "dodomeki@gmail.com") {
-                $errors['email'] = "Email is not found.";
-            } else if ($password != "aaaa") {
                 $this->app->flash('email', $email);
                 $errors['password'] = "Password does not match.";
             }
 
-            if (count($errors) > 0) {
+            if (count($errors) > 0)
+            {
                 $this->app->flash('errors', $errors);
                 $this->redirect('/login');
             }
@@ -111,6 +110,7 @@ Namespace FSTool\Controller
             {
                 $tmp = $_SESSION['urlRedirect'];
                 unset($_SESSION['urlRedirect']);
+
                 $this->redirect($tmp);
             }
 
