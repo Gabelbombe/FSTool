@@ -34,23 +34,36 @@ $app->addRoutes([
     ],
 ]);
 
+
+/**
+ * Dynamic GET routes
+ *
+ * Dynamically find controller, if secondary param (method) does not exist
+ * default to `index`. If there is a suffix set for the method type, append.
+ * After controller is assembled, dynamically place call and run controller
+ * method with parameters after 2 length as values.
+ *
+ * Example Route: /controller/method/param1/param2
+ * Calls -> Controller::methodAction($param2, $param2)
+ *
+ *
+ * ~jd
+ */
 $app->get('/:controller(/:params+)', $authenticate($app), function($controller) USE ($app)
 {
-    $class = '\\FSTool\\Controller\\' . ucfirst(strtolower($controller));
+    $class = '\\FSTool\\Controller\\' . $c = ucfirst(strtolower($controller));
     $args = func_get_args();
 
-
-die($class);
     if (class_exists($class))
     {
         $controller = New $class($app);
-        $action     = strtolower(array_pop($args) [0]);
+        $action     = (2 <=  count($args))
+            ? strtolower(array_pop($args) [0])
+            : 'index';
+
         $action     = (isset($app->container->get('settings') ['controller.method_suffix']))
             ? $action . $app->container->get('settings') ['controller.method_suffix']
             : $action;
-
-        print_r($action);
-        die;
 
         if (method_exists($controller, $action) && is_callable([$controller, $action]))
         {
@@ -61,7 +74,5 @@ die($class);
         }
     }
 
-echo $class . '::' . $action;
-
-//    $app->notFound();
+    $app->notFound();
 });
