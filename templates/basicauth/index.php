@@ -2,7 +2,7 @@
 
 <p>Welcome to my home page for a context sensitive login/logout sample application.</p>
 
-<?if (!empty($user)):?>
+<?if (! empty($user)):?>
 <p>Hi <?=$user?>
 <?endif;?>
 

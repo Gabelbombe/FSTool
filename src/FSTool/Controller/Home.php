@@ -4,11 +4,6 @@ Namespace FSTool\Controller
 {
     Class Home extends \SlimController\SlimController
     {
-        public function authdAction()
-        {
-            return true;
-        }
-
         public function indexAction()
         {
             $this->render('home/index', [

@@ -1,4 +1,9 @@
 RewriteEngine On
 RewriteBase /
+
+# remove trailing slash
+DirectorySlash Off
+RewriteRule ^(.*)\/(\?.*)?$ $1$2 [R=301,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
