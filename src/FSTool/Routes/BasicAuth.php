@@ -51,8 +51,9 @@ $app->addRoutes([
  */
 $app->get('/:controller(/:params+)', $authenticate($app), function($controller) USE ($app)
 {
-    $class = '\\FSTool\\Controller\\' . $c = ucfirst(strtolower($controller));
-    $args = func_get_args();
+    $config = $app->container->get('settings');
+    $class  = '\\FSTool\\Controller\\' . $c = ucfirst(strtolower($controller));
+    $args   = func_get_args();
 
     if (class_exists($class))
     {
@@ -61,15 +62,16 @@ $app->get('/:controller(/:params+)', $authenticate($app), function($controller) 
             ? strtolower(array_pop($args) [0])
             : 'index';
 
-        $action     = (isset($app->container->get('settings') ['controller.method_suffix']))
-            ? $action . $app->container->get('settings') ['controller.method_suffix']
-            : $action;
+        if (isset($config['controller.method_suffix']))
+
+            $action = "{$action}{$config['controller.method_suffix']}";
 
         if (method_exists($controller, $action) && is_callable([$controller, $action]))
         {
+            //callable \Class::{method}Action($args)
             return call_user_func_array([
-                $controller, //Class
-                $action      //Class::{foo}Action
+                $controller,
+                $action
             ], $args);
         }
     }
