@@ -1,14 +1,31 @@
 ---
-dbuser: fstool
-dbpass: fstool
-dbhost:
-  given: Chris
-  family: Dumars
-  address:
-    lines: |-
-      458 Walkman Dr.
-              Suite #292
-    city: Royal Oak
-    state: MI
-    postal: 48046
+test:
+  adapter:    mysql
+  encoding:   utf8
+  reconnect:  false
+  database:   fstool
+  pool:       5
+  username:   test
+  password:   test
+  host:       localhost
+
+development:
+  adapter:    mysql
+  encoding:   utf8
+  reconnect:  true
+  database:   fstool
+  pool:       5
+  username:   fstool
+  password:   fstool
+  host:       localhost
+
+production:
+  adapter:    mysql
+  encoding:   utf8
+  reconnect:  false
+  database:   fstool
+  pool:       5
+  username:   fstool
+  password:   R}O*$3O/U04I{/85wmo"i4>}qI5&9p-c
+  host:       localhost
 ...

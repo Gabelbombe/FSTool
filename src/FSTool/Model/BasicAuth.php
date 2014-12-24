@@ -10,13 +10,24 @@ Namespace FSTool\Model
      */
     Class BasicAuth Extends \SlimController\SlimController
     {
+        const     DEFAULT_ENV = 'development';
+
         protected $email    = false,
                   $pass     = false;
 
-        private   $errors   = [];
+        private   $errors   = [],
+                  $config   = [];
 
         public function __construct($email, $pass)
         {
+            // Set database adapter, or default to DEV
+            $yaml = yaml_parse_file(APP_PATH . '/config/default.yaml');
+            $this->config = (isset($yaml [getenv('APP_ENV')]))
+                ? (object) $yaml [getenv('APP_ENV')]
+                : (object) $yaml [self::DEFAULT_ENV];
+
+            $this->makeConnectionString();
+
             $this->email = $email;
             $this->pass  = $pass;
         }
@@ -33,11 +44,24 @@ Namespace FSTool\Model
                     return false;
             }
 
-            print_r(yaml_parse_file(APP_PATH . '/config/default.yaml'));
-die;
-//            $pdo = New PDO(            );
+            $pdo = New PDO($this->handler, $this->config->username, $this->config->password, []);
+
+            $stmt = $pdo->prepare("SELECT login FROM users WHERE email = :email AND password = :pass");
+
+                $stmt->bindParam(':email', $this->email);
+                $stmt->bindParam(':pass',  $this->pass);    //cleartext for now
 
             return true;
+        }
+
+        /**
+         * Return  string in format of: mysql:host=localhost;dbname=test
+         *
+         * @return string
+         */
+        private function makeConnectionString()
+        {
+            return $this->handler = "{$this->config->adapter}:host={$this->config->host};dbname={$this->config->database}";
         }
 
         /**

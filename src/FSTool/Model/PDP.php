@@ -23,9 +23,9 @@ Namespace FSTool\Model
 
         public function __construct($dsn, $user = null, $pass = null, $driverOptions = null)
         {
-            $this->pdo = New \PDO($dsn, $user, $pass, $driverOptions,[
-                \PDO::ATTR_PERSISTENT => true, // REF: http://stackoverflow.com/a/23482353/411141
-            ]);
+            $this->pdo = New \PDO($dsn, $user, $pass, [ // REF: http://stackoverflow.com/a/23482353/411141
+                \PDO::ATTR_PERSISTENT => true,
+            ] + $driverOptions);
 
             $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 

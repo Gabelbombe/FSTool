@@ -4,6 +4,7 @@
     "php": ">=5.6",
     "slim/slim": "2.*",
     "slimcontroller/slimcontroller": "dev-master",
+    "ircmaxell/password-compat": "dev-master",
     "alaneor/ad-x": "dev-master"
   },
   "autoload": {
