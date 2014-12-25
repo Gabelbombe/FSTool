@@ -1,25 +1,27 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
 <head>
-   <style type="text/css">body {font-size:16px;} .error {background-color:red} .small {font-size:12px}</style>
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-   <script type="text/javascript">
-   $(document).ready(function() {
-      $('#login').click(function() {
-         $('#login').attr("href", $('#login').attr("href") + "?r=" + encodeURIComponent($(location).attr('pathname')));
-      });
-   });
-   </script>
+
+   <meta charset="utf-8">
+   <title>FS Tools Login</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="">
+   <meta name="author" content="">
+
+   <!-- CSS -->
+   <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+   <link rel="stylesheet" href="assets/css/reset.css">
+   <link rel="stylesheet" href="assets/css/supersized.css">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+   <!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+   <![endif]-->
+
 </head>
+
 <body>
 
-<a href="/">Home</a> | <a href="/about">About</a> | <a href="/level/contact">Deep Contact</a>
-
-<?if (empty($user)):?>
-   | <a href="/login" id="login">Login</a>
-<?else:?>
-   | <a href="/private/about">Private About</a>
-   | <a href="/private/goodstuff">Private Good Stuff</a>
-   | <a href="/logout">Logout</a>
-<?endif;?>
-
-<hr/>
+<!-- http://azmind.com/demo/fullscreen-login/ -->

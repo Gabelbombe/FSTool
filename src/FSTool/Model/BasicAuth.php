@@ -32,6 +32,8 @@ Namespace FSTool\Model
          * Account exists Y/n]
          * Sets user object
          *
+         * PKG REF: https://github.com/ircmaxell/password_compat
+         *
          * @return bool
          */
         public function exists()
@@ -43,10 +45,8 @@ Namespace FSTool\Model
                     return false;
             }
 
-            $sql = "SELECT id, login, hash FROM users WHERE email = :email";
-
             $dbh = New PDO($this->handler, $this->config->username, $this->config->password, []);
-            $res = $dbh->prepare($sql);
+            $res = $dbh->prepare("SELECT id, login, hash FROM users WHERE email = :email");
 
                 $res->exec([
                     ':email' => $this->email
