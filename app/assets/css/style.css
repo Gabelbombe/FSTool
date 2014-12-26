@@ -239,7 +239,7 @@ blockquote {
     margin-bottom: 25px;
     margin-top: 5px;
 }
-
+/*
 blockquote h2 {
     background: rgb(0,183,234); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(0,183,234,1) 0%, rgba(0,158,195,1) 100%); /* FF3.6+ */
@@ -259,7 +259,7 @@ blockquote h2 {
 blockquote h2 a {
     color: #fff !important;
 }
-
+*/
 p, blockquote, footer {
     font-size: 1em;
     line-height: 1.5;
