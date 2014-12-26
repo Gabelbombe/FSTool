@@ -52,16 +52,20 @@ Namespace FSTool\Model
                     ':email' => $this->email
                 ]);
 
-            $this->user = $res->fetch(\PDO::FETCH_OBJ);
+            $this->profile = $res->fetch(\PDO::FETCH_OBJ);
 
-            if (empty($this->user))
+            if (empty($this->profile))
             {
                 $this->errors['email'] = "Email is not found.";
 
                     return false;
             }
 
-            return password_verify($this->pass, $this->user->hash);
+            $valid = password_verify($this->pass, $this->profile->hash);
+
+                unset($this->profile->hash); // Let's not tempt fate
+
+            return $valid; // bool
         }
 
         private function getConfig()
@@ -73,6 +77,11 @@ Namespace FSTool\Model
                 : (object) $yaml [self::DEFAULT_ENV];
 
                 return $this;
+        }
+
+        public function getProfile()
+        {
+            return $this->profile;
         }
 
         /**

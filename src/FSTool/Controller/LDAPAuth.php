@@ -12,12 +12,5 @@ Namespace FSTool\Controller
         {
             $this->render('ldap/index', []);
         }
-
-        public function helloAction($name)
-        {
-            $this->render('home/hello', [
-                'name' => $name
-            ]);
-        }
     }
 }

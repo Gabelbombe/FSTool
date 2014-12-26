@@ -17,7 +17,7 @@ Namespace FSTool\Controller
                 $this->redirect($_SESSION['urlRedirect']);
 
             }
-            $this->render('basicauth/index');
+            $this->redirect('admin');
         }
 
         /**
@@ -92,6 +92,8 @@ Namespace FSTool\Controller
             $exists = $auth->exists();
             $errors = $auth->getErrors();
 
+            $profile = $auth->getProfile();
+
             if (true !== $exists)
             {
                 $this->app->flash('email', $email);
@@ -104,7 +106,7 @@ Namespace FSTool\Controller
                 $this->redirect('/login');
             }
 
-            $_SESSION['user'] = $email;
+            $_SESSION['user'] = $profile->login;
 
             if (isset($_SESSION['urlRedirect']))
             {

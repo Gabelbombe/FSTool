@@ -1,7 +1,10 @@
-<? require 'header.php' ?>
+<?php require 'header.php' ?>
 
-<h2>You have logged out.</h2>
+<div style="margin-top: 250px">
+    <h2>You have logged out.</h2>
+    <p style="padding: 5px">
+        <a href="/">Back Home</a>
+    </p>
+</div>
 
-<p><a href="/">Back Home</a></p>
-
-<? require 'footer.php' ?>
+<?php require 'footer.php' ?>

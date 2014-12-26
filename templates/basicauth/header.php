@@ -21,7 +21,4 @@
    <![endif]-->
 
 </head>
-
 <body>
-
-<!-- http://azmind.com/demo/fullscreen-login/ -->

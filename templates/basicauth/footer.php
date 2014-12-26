@@ -1,9 +1,10 @@
-
-<!-- Javascript -->
-<script src="assets/js/jquery-1.8.2.min.js"></script>
-<script src="assets/js/supersized.3.2.7.min.js"></script>
-<script src="assets/js/supersized-init.js"></script>
-<script src="assets/js/scripts.js"></script>
+    <!-- Javascript -->
+    <script src="assets/js/jquery-1.8.2.min.js"></script>
+    <?php if (('login' || 'logout') == substr($_SERVER["REQUEST_URI"],strrpos($_SERVER["REQUEST_URI"],"/") + 1)) {
+        require APP_PATH . '/templates/scripts/supersized.php';
+    } else { ?>
+        <script src="assets/js/foo.js"></script>
+    <?php } ?>
 
 </body>
 

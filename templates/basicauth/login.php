@@ -1,19 +1,40 @@
-<? require 'header.php' ?>
+<?php require 'header.php' ?>
 
-<?if(!empty($error)):?>
-<p class="error"><?=$error?></p>
-<?endif;?>
+<?php if (empty($user)) { ?>
 
-<p class="small">Hint: brian@nesbot.com / aaaa</p>
+  <div class="page-container">
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <input type="text" name="email" class="username" placeholder="Email" value="<?=$email_value?>" /> <span class="error"><?=$email_error?></span></p>
+      <input type="password" name="password" class="password" placeholder="Password"> <span class="error"><?=$password_error?></span></p>
+      <button type="submit" value="Login">Sign me in</button>
+      <div class="error"><span>+</span></div>
+    </form>
 
-<form action="/login" method="POST">
-  <p>Email: <input type="text" name="email" id="email" value="<?=$email_value?>" /> <span class="error"><?=$email_error?></span></p>
-  <p>Password: <input type="password" name="password" id="password" /> <span class="error"><?=$password_error?></span></p>
-  <p><input type="submit" value="Login" />
-</form>
+    <?php if(! empty($urlRedirect)) { ?>
+      <p style="margin-top: 15px; font-size: 10px; color: red;">(You will redirect to "<?=$urlRedirect?>" upon login)</p>
+    <?php } ?>
 
-<?if(!empty($urlRedirect)):?>
-<p class="small">(You will redirect to "<?=$urlRedirect?>" upon login)</p>
-<?endif;?>
+    <div class="connect">
+      <p>Or connect with:</p>
+      <p>
+        <a class="facebook" href=""></a>
+        <a class="twitter" href=""></a>
+      </p>
+    </div>
+  </div>
 
-<? require 'footer.php' ?>
+<?php } else {
+
+  echo '
+    <div style="margin-top: 250px">Already logged in, redirecting....</div>
+    <script>
+      // Your application has indicated there\'s an error
+      window.setTimeout(function() {
+        window.location.href = "/";
+      }, 1000);
+    </script>';
+
+} ?>
+
+<?php require 'footer.php' ?>
