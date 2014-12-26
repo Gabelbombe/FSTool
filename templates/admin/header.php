@@ -20,33 +20,6 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <style>
-        #header {
-            position: fixed;
-            top: 0;
-            z-index: 10;
-            background: none repeat scroll 0 0 #417690;
-            color: #ffc;
-            overflow: hidden;
-            width: 100%
-        }
-        #branding h1 {
-            color: #f4f379;
-            font-size: 18px;
-            font-weight: normal;
-            margin: 8px 0;
-            padding: 0 10px;
-        }
-        #user-tools {
-            font-size: 11px;
-            padding: 1.2em 10px;
-            position: absolute;
-            right: 0;
-            text-align: right;
-            top: 0;
-        }
-    </style>
-
 </head>
 <body>
 
