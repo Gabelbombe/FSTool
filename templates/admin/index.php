@@ -1,4 +1,6 @@
-<?php require 'header.php'; ?>
+<?php require 'header.php';
+//http://go.themeforest.net/the-corporate-trends-bundle/?ref=flipstorm
+?>
 
     <div class="jumbotron">
         <div style='position: absolute' id="content">
