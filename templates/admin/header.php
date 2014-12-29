@@ -3,31 +3,33 @@
 
 <head>
 
-    <meta charset="utf-8">
     <title>FS Tools Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="utf-8">
+
     <meta name="author" content="Jd Daniel :: Ehime-ken">
     <meta name="description" content="HTML5/PHP5.6 Replacement for FSTool">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/trends.css" />
-
+    <link rel='stylesheet' type='text/css' href="/assets/css/trends.css" />
 
     <!-- Google fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <link rel='stylesheet' href='//fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900' />
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Roboto+Slab:400,700' />    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=PT+Sans:400,700'>
 
 
     <!-- Bootstrap Core -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel='stylesheet' type='text/css' href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Override -->
+    <link rel='stylesheet' type='text/css' href="/assets/css/style.css" />
 
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
 </head>
@@ -42,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">IAS Filesystem Tool (Unix)</a>
+                <a href="/" class="navbar-brand">IAS Filesystem Tool (Unix)</a>
 
             </div>
             <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -52,7 +54,7 @@
                     </div>
                 </form>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="#">Profile</a></li>
 
                     <li class="dropdown">

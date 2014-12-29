@@ -1,67 +1,58 @@
-<?php require 'header.php';
-//http://go.themeforest.net/the-corporate-trends-bundle/?ref=flipstorm
-?>
+<?php require 'header.php'; ?>
 
     <div class="jumbotron">
-        <div style='position: absolute' id="content">
-            <div id="content-main">
-                <article class="module">
-                    <blockquote>
-                        <h2>
-                            <a href="/admin/auth" title="Models in the Auth application">Auth</a>
-                        </h2>
+        <div class="container">
+            <div class="row-fluid">
+                <div class="col-6-xs col-lg-3">
+                    <h2>
+                        <span class="module-title" title="Models in the Auth application">Auth</span>
+                    </h2>
 
-                        <section>
-                            <a href="/admin/auth/group/">Groups</a>
-                            <a class="symbol c" href="/admin/auth/group/" class="changelink">Change</a>
-                            <a class="symbol a" href="/admin/auth/group/add/" class="addlink">Add</a>
-                        </section>
+                    <section>
+                        <a class="section-header" href="/admin/group/">Groups</a>
+                        <a class="r glyphicon glyphicon-cog" href="/admin/group/">&nbsp;</a>
+                        <a class="r glyphicon glyphicon-import" href="/admin/group/add/">&nbsp;</a>
+                    </section>
 
-                        <section>
-                            <a href="/admin/auth/user/">Users</a>
-                            <a class="symbol c" href="/admin/auth/user/" class="changelink">Change</a>
-                            <a class="symbol a" href="/admin/auth/user/add/" class="addlink">Add</a>
-                        </section>
+                    <br />
 
-                    </blockquote>
-                </article>
+                    <section>
+                        <a class="section-header" href="/admin/user/">Users</a>
+                        <a class="r glyphicon glyphicon-cog" href="/admin/user/">&nbsp;</a>
+                        <a class="r glyphicon glyphicon-import" href="/admin/user/add/">&nbsp;</a>
+                    </section>
+                </div>
 
-                <article class="module">
-                    <blockquote>
-                        <h2>
-                            <a href="/admin/filesystem/" class="section" title="Models in the Filesystem application">Filesystem</a>
-                        </h2>
-                        <section>
-                            <a href="/admin/filesystem/application/">Applications</a>
-                            <a class="symbol c" href="/admin/filesystem/application/" class="changelink">Change</a>
-                            <a class="symbol a" href="/admin/filesystem/application/add/" class="addlink">Add</a>
-                        </section>
 
-                    </blockquote>
-                </article>
+                <div class="col-6-xs col-lg-4">
+                    <h2>
+                        <span class="module-title" title="Models in the Filesystem application">Filesystem</span>
+                    </h2>
+                    <section>
+                        <a class="section-header" href="/admin/app/">Applications</a>
+                        <a class="r glyphicon glyphicon-cog" href="/admin/app/">&nbsp;</a>
+                        <a class="r glyphicon glyphicon-import" href="/admin/app/add/">&nbsp;</a>
+                    </section>
+                </div>
 
-                <article class="module">
-                    <blockquote>
-                        <h2>
-                            <a href="/admin/sites/" class="section" title="Models in the Sites application">Sites</a>
-                        </h2>
-                        <section>
-                            <a href="/admin/sites/site/">Sites</a>
-                            <a class="symbol c" href="/admin/filesystem/site/" class="changelink">Change</a>
-                            <a class="symbol a" href="/admin/filesystem/site/add/" class="addlink">Add</a>
-                        </section>
 
-                    </blockquote>
-                </article>
+                <div class="col-6-xs col-lg-3">
+                    <h2>
+                        <span class="module-title" title="Models in the Sites application">Sites</span>
+                    </h2>
+                    <section>
+                        <a class="section-header" href="/admin/sites/site/">Sites</a>
+                        <a class="r glyphicon glyphicon-cog" href="/admin/site/">&nbsp;</a>
+                        <a class="r glyphicon glyphicon-import" href="/admin/site/add/">&nbsp;</a>
+                    </section>
+                </div>
             </div>
-            <br class="clear" />
         </div>
     </div>
 
-    <div class="row jumbotronBottom">
+    <div class="row-fluid jumbotronBottom">
         <div class="col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">&nbsp;</div>
     </div>
-
 
         <?php //require APP_PATH . '/templates/widgets/history.php' ?>
 

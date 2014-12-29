@@ -14,6 +14,7 @@ $app = New \SlimController\Slim([
     'controller.template_suffix' => 'php',
 ]);
 
+// bootstrap routes
 require APP_PATH . '/src/FSTool/Routes/BasicAuth.php';
 
 $app->run();

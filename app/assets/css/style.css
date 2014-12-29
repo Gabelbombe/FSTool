@@ -2,18 +2,39 @@ body {
     background: none repeat scroll 0 0 #eee;
 }
 
+@media (max-width: 1200px) {
+    .module-title {
+        display: none;
+    }
+
+    .section-header, .navbar-brand {
+        font-size: 2em !important;
+    }
+
+    .navbar-nav a {
+        font-size: 1.2em !important;
+    }
+
+}
+
+
 .jumbotron {
+    text-align: left;
     padding: 0;
     background: url("/assets/img/hero_bg.jpg") no-repeat scroll center top #191919;
-    margin-top: 51px;
+    margin-top: 50px;
     height: 570px;
 }
+
+.jumbotronBottom {
+    margin: -1px !important;
+}
+
 .navbar {
     padding: 0;
     color: #000;
     margin-bottom: 0;
-    min-height: auto;
-
+    min-height: 0;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -23,4 +44,36 @@ body {
 
 .navbar-header {
     width: auto;
+}
+
+a { text-decoration: none !important; }
+
+.jumbotron a:hover { color: #e0ffff !important; }
+
+.glyphicon-cog:before {
+    content: "";
+    color: #ff9;
+    font-stretch: semi-expanded;
+    font-size: 25px;
+}
+
+.glyphicon-import:before {
+    content: "";
+    color: #080;
+    font-stretch: semi-expanded;
+    font-size: 25px;
+}
+
+.r { float: right; padding-left: 10px; }
+
+.col-6-xs {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    background: #fff; /* fallback for browsers that don't understand rgba */
+    border: #solid 10px #000; /* fallback for browsers that don't understand rgba */
+    background-color: rgba(0,0,0,0.7);
+    border: solid 5px rgba(255,255,255,0.2);
+    min-height: 160px;
+    margin: 15px 5px;
 }

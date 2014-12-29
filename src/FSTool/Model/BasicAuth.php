@@ -1,31 +1,30 @@
 <?php
 Namespace FSTool\Model
 {
-    // replace Builtin PDO with Built-out PDP
-    USE FSTool\Model\PDP AS PDO;
-
     /**
      * Class Auth
      * @package FSTool\Model
      */
     Class BasicAuth Extends \SlimController\SlimController
     {
+        USE       \FSTool\Traits\Database;
+
         const     DEFAULT_ENV = 'development';
 
         protected $email    = false,
                   $pass     = false,
                   $user     = null;
 
+        protected $PDObject = null; // pdo instance
+
         private   $errors   = [],
-                  $config   = [],
                   $hash     = [];
 
         public function __construct($email, $pass)
         {
-            $this->getConfig()->makeConnectionString();
-
-            $this->email = $email;
-            $this->pass  = $pass;
+            $this->PDObject = $this->load();
+            $this->email    = $email;
+            $this->pass     = $pass;
         }
 
         /**
@@ -45,7 +44,8 @@ Namespace FSTool\Model
                     return false;
             }
 
-            $dbh = New PDO($this->handler, $this->config->username, $this->config->password, []);
+            $dbh = $this->PDObject;
+
             $res = $dbh->prepare("SELECT id, login, hash FROM users WHERE email = :email");
 
                 $res->exec([
@@ -68,6 +68,8 @@ Namespace FSTool\Model
             return $valid; // bool
         }
 
+
+/*
         private function getConfig()
         {
             // Set database adapter, or default to DEV
@@ -78,6 +80,8 @@ Namespace FSTool\Model
 
                 return $this;
         }
+*/
+
 
         public function getProfile()
         {
@@ -89,12 +93,14 @@ Namespace FSTool\Model
          *
          * @return string
          */
+/*
         private function makeConnectionString()
         {
             $this->handler = "{$this->config->adapter}:host={$this->config->host};dbname={$this->config->database}";
 
                 return $this;
         }
+*/
 
         /**
          * @return array
