@@ -25,7 +25,7 @@ MYSQL:
 ```
 
  - Creating a primary users table
- 
+
 ```sql
     DROP TABLE IF EXISTS users; 
     CREATE TABLE users (
@@ -33,6 +33,49 @@ MYSQL:
         login       VARCHAR(100) NOT NULL,
         email       VARCHAR(50)  NOT NULL,
         hash        VARCHAR(255) NOT NULL, ## Switching to BCRYPT
+        created     TIMESTAMP    DEFAULT NOW(),
+        modified    TIMESTAMP    DEFAULT NOW() ON UPDATE NOW()
+    ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+```
+
+ - Creating table for Applications
+
+```sql
+    DROP TABLE IF EXISTS applications; 
+    CREATE TABLE applications (
+        id          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name        VARCHAR(100) NOT NULL,
+        created     TIMESTAMP    DEFAULT NOW(),
+        modified    TIMESTAMP    DEFAULT NOW() ON UPDATE NOW()
+    ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+```
+
+ - Creating table for FSGroups
+
+```sql
+    DROP TABLE IF EXISTS fsgroups; 
+    CREATE TABLE fsgroups (
+        id          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name        VARCHAR(100) NOT NULL,
+        aid         BIGINT       NOT NULL,
+        created     TIMESTAMP    DEFAULT NOW(),
+        modified    TIMESTAMP    DEFAULT NOW() ON UPDATE NOW()
+    ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+```
+
+ - Creating table for Filesystems
+
+```sql
+    DROP TABLE IF EXISTS fsgroups; 
+    CREATE TABLE fsgroups (
+        id          BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name        VARCHAR(100) NOT NULL,
+        fid         BIGINT       NOT NULL,  ## FSGroup ID
+        oid         BIGINT       NOT NULL,  ## User ID
+        gid         BIGINT       NOT NULL,  ## Group ID
+        volume      varchar(100) NOT NULL,
+        mount       varchar(100) NOT NULL,
+        size        varchar(100) NOT NULL,
         created     TIMESTAMP    DEFAULT NOW(),
         modified    TIMESTAMP    DEFAULT NOW() ON UPDATE NOW()
     ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;

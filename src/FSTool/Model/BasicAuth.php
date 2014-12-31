@@ -9,8 +9,6 @@ Namespace FSTool\Model
     {
         USE       \FSTool\Traits\Database;
 
-        const     DEFAULT_ENV = 'development';
-
         protected $email    = false,
                   $pass     = false,
                   $user     = null;
@@ -68,39 +66,10 @@ Namespace FSTool\Model
             return $valid; // bool
         }
 
-
-/*
-        private function getConfig()
-        {
-            // Set database adapter, or default to DEV
-            $yaml = yaml_parse_file(APP_PATH . '/config/default.yaml');
-            $this->config = (isset($yaml [getenv('APP_ENV')]))
-                ? (object) $yaml [getenv('APP_ENV')]
-                : (object) $yaml [self::DEFAULT_ENV];
-
-                return $this;
-        }
-*/
-
-
         public function getProfile()
         {
             return $this->profile;
         }
-
-        /**
-         * Return  string in format of: mysql:host=localhost;dbname=test
-         *
-         * @return string
-         */
-/*
-        private function makeConnectionString()
-        {
-            $this->handler = "{$this->config->adapter}:host={$this->config->host};dbname={$this->config->database}";
-
-                return $this;
-        }
-*/
 
         /**
          * @return array

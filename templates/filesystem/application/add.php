@@ -5,20 +5,17 @@
             <div class="row-fluid">
 
                 <div class="col-6-xs col-lg-12">
-
                     <div class="col-lg-6">
-                        <h2>Select group to change</h2>
+                        <h2>Select App to change</h2>
                     </div><!-- /.col-lg-6 -->
-
                     <div class="col-lg-6">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search for...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
-                                </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go!</button>
+                                    </span>
                         </div><!-- /input-group -->
                     </div><!-- /.row -->
-
                 </div>
 
             </div>

@@ -2,6 +2,7 @@
 
 // define a working directory
 define('APP_PATH', dirname(__DIR__)); // PHP v5.6+
+define('DEFAULT_ENV', 'development');
 
 // load
 require APP_PATH . '/vendor/autoload.php';

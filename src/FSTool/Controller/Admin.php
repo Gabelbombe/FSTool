@@ -21,21 +21,21 @@ Namespace FSTool\Controller
          */
         public function groupAction()
         {
-            $group = New Group();
-
             if (in_array('add', $this->setPath()->requests))
 
                 $this->groupAddAction();
 
             else
-            {
+
                 $this->render('admin/auth/group/index');
-            }
+
         }
 
 
         private function groupAddAction()
         {
+
+die('add');
             $this->render('admin/auth/group/add');
         }
 
@@ -45,26 +45,15 @@ Namespace FSTool\Controller
          */
         public function appAction()
         {
-            if (in_array('add', $this->setPath()->requests))    $this->appAddAction();
+            $controller = New App($this->app);
+            $controller->decide();
 
-            else if (2 == count($this->requests))               $this->appViewAction();
 
-            else
-            {
-                $this->render('admin/filesystem/application/index');
-            }
+//            $model = New Applications();
+
+//            $model->generate();
+
         }
-
-        private function appViewAction()
-        {
-            print_r($this->requests);
-        }
-
-        private function appAddAction()
-        {
-            $this->render('admin/filesystem/application/add');
-        }
-
 
 
 

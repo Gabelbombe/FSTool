@@ -40,14 +40,16 @@ $app->hook('slim.before.dispatch', function() USE ($app)
  * TODO: addressed somewhere down the line.... ~jd
  */
 $app->addRoutes([
+    '/login'        => 'BasicAuth:delegate',
+    '/logout'       => 'BasicAuth:logout',
+    '/'             => ['BasicAuth:router', [ $authenticate($app) ]],
 
-    '/login'    => 'BasicAuth:delegate',
-    '/logout'   => 'BasicAuth:logout',
+    '/apps'         => 'App:index',
+    '/apps/add'     => 'App:add',
 
-    '/'         => [
-        'BasicAuth:router', [ $authenticate($app) ]
-    ],
+    '/api'          => 'Api:index',
 ]);
+
 
 
 /**
@@ -93,3 +95,5 @@ $app->get('/:controller(/:params+)', $authenticate($app), function($controller) 
 
     $app->notFound();
 });
+
+//require 'Ajax.php'; //testing
